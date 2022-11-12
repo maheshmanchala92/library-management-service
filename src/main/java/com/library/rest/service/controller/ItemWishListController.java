@@ -1,6 +1,7 @@
 package com.library.rest.service.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ import com.library.rest.service.dto.WishListDTO;
 import com.library.rest.service.service.ItemWishListService;
 
 @RestController
-@RequestMapping("/item")
+@RequestMapping("/item/wishItems")
 public class ItemWishListController {
 
 	private ItemWishListService itemWishListService;
@@ -25,25 +26,31 @@ public class ItemWishListController {
 		this.itemWishListService = itemWishListService;
 	}
 
-	@PostMapping(value = "/wishItems/save", consumes = "application/json")
+	@GetMapping(value = "/all")
+	public ResponseDTO getAllUsersWishList() {
+		Map<String, List<BookDTO>> userWishList = itemWishListService.getAllUsersWishList();
+		return new ResponseDTO("Success", userWishList, HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/save", consumes = "application/json")
 	public ResponseDTO saveWishList(@RequestBody final WishListDTO wishListDTO) {
-		itemWishListService.saveWishList(wishListDTO);
-		return new ResponseDTO("Success", "Wish List Save Successfully", HttpStatus.OK);
+		List<BookDTO> userWishList = itemWishListService.updateWishList(wishListDTO);
+		return new ResponseDTO("Success", userWishList, HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/wishItems/{userId}", consumes = "application/json")
-	public ResponseDTO getWishListByUserId(@PathVariable final String userId) {
+	@GetMapping(value = "/{userId}")
+	public ResponseDTO getWishListByUserId(@PathVariable("userId") final String userId) {
 		List<BookDTO> userWishList = itemWishListService.getWishListByUserId(userId);
 		return new ResponseDTO("Success", userWishList, HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/wishItems/remove", consumes = "application/json")
+	@PostMapping(value = "/remove", consumes = "application/json")
 	public ResponseDTO removeWishList(@RequestBody final WishListDTO wishListDTO) {
 		List<BookDTO> userWishList = itemWishListService.removeWishList(wishListDTO);
 		return new ResponseDTO("Success", userWishList, HttpStatus.OK);
 	}
 	
-	@PostMapping(value = "/wishItems/update", consumes = "application/json")
+	@PostMapping(value = "/update", consumes = "application/json")
 	public ResponseDTO updateWishList(@RequestBody final WishListDTO wishListDTO) {
 		List<BookDTO> userWishList = itemWishListService.updateWishList(wishListDTO);
 		return new ResponseDTO("Success", userWishList, HttpStatus.OK);

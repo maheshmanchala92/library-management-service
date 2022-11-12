@@ -26,8 +26,6 @@ public class ItemSearchServiceImpl implements ItemSearchService
 
 	@Override
 	public List<BookDTO> getAllAvailableBooks() {
-		return null;
+		return BookUtils.getBookList();
 	}
-    
-    
 }

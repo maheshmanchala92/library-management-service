@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class WishListDTO {
 	private String userId;
-	private List<BookDTO> wishItemList;
+	private List<BookDTO> selectedItems;
 }
