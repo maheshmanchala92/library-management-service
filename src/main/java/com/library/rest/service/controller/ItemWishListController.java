@@ -39,8 +39,14 @@ public class ItemWishListController {
 	
 	@PostMapping(value = "/wishItems/remove", consumes = "application/json")
 	public ResponseDTO removeWishList(@RequestBody final WishListDTO wishListDTO) {
-		itemWishListService.removeWishList(wishListDTO);
-		return new ResponseDTO("Success", "Wish List Save Successfully", HttpStatus.OK);
+		List<BookDTO> userWishList = itemWishListService.removeWishList(wishListDTO);
+		return new ResponseDTO("Success", userWishList, HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/wishItems/update", consumes = "application/json")
+	public ResponseDTO updateWishList(@RequestBody final WishListDTO wishListDTO) {
+		List<BookDTO> userWishList = itemWishListService.updateWishList(wishListDTO);
+		return new ResponseDTO("Success", userWishList, HttpStatus.OK);
 	}
 
 }
