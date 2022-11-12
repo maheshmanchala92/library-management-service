@@ -7,6 +7,12 @@ import com.library.rest.service.dto.WishListDTO;
 
 public interface ItemWishListService {
 
-	public List<BookDTO> saveWishList(WishListDTO wishListDTO);
+	public List<BookDTO> saveWishList(final WishListDTO wishListDTO);
+
+	public List<BookDTO> getWishListByUserId(final String userId);
+
+	public List<BookDTO>  removeWishList(WishListDTO wishListDTO);
+
+	public List<BookDTO> updateWishList(WishListDTO wishListDTO);
 
 }
