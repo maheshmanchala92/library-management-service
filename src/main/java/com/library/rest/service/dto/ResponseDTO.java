@@ -1,4 +1,4 @@
-package com.library.rest.service.model;
+package com.library.rest.service.dto;
 
 import org.springframework.http.HttpStatus;
 

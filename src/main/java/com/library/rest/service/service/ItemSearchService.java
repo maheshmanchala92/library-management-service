@@ -1,11 +1,11 @@
 package com.library.rest.service.service;
 
-import com.library.rest.service.dto.BookDTO;
 import java.util.List;
 
-public interface ItemSearchService
-{
-    List<BookDTO> searchBook(final String itemName);
+import com.library.rest.service.dto.BookDTO;
 
-	List<BookDTO> getAllAvailableBooks();
+public interface ItemSearchService {
+	public List<BookDTO> searchBook(final String itemName);
+
+	public List<BookDTO> getAllAvailableBooks();
 }

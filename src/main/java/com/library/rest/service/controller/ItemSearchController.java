@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.library.rest.service.dto.BookDTO;
-import com.library.rest.service.model.ResponseDTO;
+import com.library.rest.service.dto.ResponseDTO;
 import com.library.rest.service.service.ItemSearchService;
 
 @RestController
 @RequestMapping("/item")
 public class ItemSearchController {
-	
+
 	private ItemSearchService itemSearchService;
 
 	public ItemSearchController(final ItemSearchService itemSearchService) {
@@ -35,11 +35,11 @@ public class ItemSearchController {
 		}
 		return new ResponseDTO("Error", "Please enter valid itemName.", HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@GetMapping(value = "/search/all")
 	public ResponseDTO getAllAvailableBooks() {
-			List<BookDTO> bookList = itemSearchService.getAllAvailableBooks();
-			return new ResponseDTO("Success", bookList, HttpStatus.OK);
+		List<BookDTO> bookList = itemSearchService.getAllAvailableBooks();
+		return new ResponseDTO("Success", bookList, HttpStatus.OK);
 	}
-	
+
 }
