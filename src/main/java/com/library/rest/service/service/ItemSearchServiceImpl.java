@@ -1,6 +1,5 @@
 package com.library.rest.service.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,12 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.library.rest.service.dto.BookDTO;
+import com.library.rest.service.utils.BookUtils;
 
 @Service
 public class ItemSearchServiceImpl implements ItemSearchService
 {
+	@Override
     public List<BookDTO> searchBook(final String itemName) {
-        final List<BookDTO> bookDTOList = this.getBookList();
+        final List<BookDTO> bookDTOList = BookUtils.getBookList();
         final String itemName2 = StringUtils.trimWhitespace(itemName);
         if (StringUtils.hasText(itemName)) {
             return bookDTOList.stream()
@@ -22,15 +23,11 @@ public class ItemSearchServiceImpl implements ItemSearchService
         }
         return List.of();
     }
+
+	@Override
+	public List<BookDTO> getAllAvailableBooks() {
+		return null;
+	}
     
-    private List<BookDTO> getBookList() {
-        final List<BookDTO> bookDTOList = new ArrayList<BookDTO>();
-        final BookDTO bookDTO1 = new BookDTO(Integer.valueOf(1), "A to Z", "Chiru", Double.valueOf(100.0), "Telugu");
-        final BookDTO bookDTO2 = new BookDTO(Integer.valueOf(2), "My Journey", "Sachin", Double.valueOf(200.0), "Telugu");
-        final BookDTO bookDTO3 = new BookDTO(Integer.valueOf(3), "Learning How to Fly", "APJ", Double.valueOf(300.0), "Telugu");
-        bookDTOList.add(bookDTO1);
-        bookDTOList.add(bookDTO2);
-        bookDTOList.add(bookDTO3);
-        return bookDTOList;
-    }
+    
 }

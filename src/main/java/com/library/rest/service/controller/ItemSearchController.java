@@ -1,28 +1,45 @@
 package com.library.rest.service.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.json.JSONObject;
-import com.library.rest.service.dto.BookDTO;
 import java.util.List;
+
+import org.json.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.library.rest.service.service.ItemSearchService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.library.rest.service.dto.BookDTO;
+import com.library.rest.service.model.ResponseDTO;
+import com.library.rest.service.service.ItemSearchService;
+
 @RestController
-@RequestMapping({ "/item" })
+@RequestMapping("/item")
 public class ItemSearchController {
+	
 	private ItemSearchService itemSearchService;
 
 	public ItemSearchController(final ItemSearchService itemSearchService) {
 		this.itemSearchService = itemSearchService;
 	}
 
-	@PostMapping(value = { "/search" }, consumes = { "application/json" })
-	public List<BookDTO> searchBook(@RequestBody final String searchDTO) {
-		final JSONObject jsonObject = new JSONObject("");
-		final String itemName = jsonObject.getString("itemName");
-		final List<BookDTO> bookDTOList = (List<BookDTO>) this.itemSearchService.searchBook(itemName);
-		return bookDTOList;
+	@PostMapping(value = "/search", consumes = "application/json")
+	public ResponseDTO searchBookByName(@RequestBody final String itemName) {
+		final JSONObject jsonObject = new JSONObject(itemName);
+		final String itemNameValue = jsonObject.getString("itemName");
+		if (StringUtils.hasText(itemNameValue)) {
+			List<BookDTO> bookList = itemSearchService.searchBook(itemNameValue.trim());
+			return new ResponseDTO("Success", bookList, HttpStatus.OK);
+		}
+		return new ResponseDTO("Error", "Please enter valid itemName.", HttpStatus.BAD_REQUEST);
 	}
+	
+	@GetMapping(value = "/search/all")
+	public ResponseDTO getAllAvailableBooks() {
+			List<BookDTO> bookList = itemSearchService.getAllAvailableBooks();
+			return new ResponseDTO("Success", bookList, HttpStatus.OK);
+	}
+	
 }
