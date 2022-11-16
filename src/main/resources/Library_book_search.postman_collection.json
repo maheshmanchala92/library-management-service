@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "0cbb45d8-347b-4c02-8a86-9f753682516c",
+		"name": "Library_book_search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1605318"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/item/search by itemName",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"itemName\": \"A to Z\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"search"
+					]
+				},
+				"description": "it will return item list/book list"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/item/search/all",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/item/search/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"search",
+						"all"
+					]
+				},
+				"description": "it will return item list/book list"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/item/wishItems/save",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\":\"user1\",\n\"selectedItems\":[\n        {\n            \"bookId\": 1,\n            \"bookName\": \"A to Z\",\n            \"bookAuthorName\": \"Chiru\",\n            \"price\": 100,\n            \"language\": \"Telugu\",\n            \"quantity\": 10\n        }\n    ]\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/wishItems/save",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"wishItems",
+						"save"
+					]
+				},
+				"description": "it will return item list/book list"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/item/wishItems/{userId}",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/item/wishItems/user1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"wishItems",
+						"user1"
+					]
+				},
+				"description": "it will return item list/book list"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/item/wishItems/update",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\":\"user1\",\n\"selectedItems\":[\n        {\n            \"bookId\": 1,\n            \"bookName\": \"A to Z\",\n            \"bookAuthorName\": \"Chiru\",\n            \"price\": 100,\n            \"language\": \"English\",\n            \"quantity\": 2\n        },\n        {\n            \"bookId\": 2,\n            \"bookName\": \"My Journey\",\n            \"bookAuthorName\": \"Sachin\",\n            \"price\": 200.0,\n            \"language\": \"Telugu\",\n            \"quantity\": 3\n        }\n    ]\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/wishItems/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"wishItems",
+						"update"
+					]
+				},
+				"description": "it will return item list/book list"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/item/wishItems/remove",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\":\"user1\",\n\"selectedItems\":[\n        {\n            \"bookId\": 1,\n            \"bookName\": \"A to Z\",\n            \"bookAuthorName\": \"Chiru\",\n            \"price\": 100,\n            \"language\": \"English\",\n            \"quantity\": 5\n        }\n    ]\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/wishItems/remove",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"wishItems",
+						"remove"
+					]
+				},
+				"description": "it will return item list/book list"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/item/wishItems/all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\":\"200\",\n\"selectedItems\":[\n        {\n            \"bookId\": 1,\n            \"bookName\": \"A to Z\",\n            \"bookAuthorName\": \"Chiru\",\n            \"price\": 100,\n            \"language\": \"English\",\n            \"quantity\": 20\n        }\n    ]\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/item/wishItems/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"wishItems",
+						"all"
+					]
+				},
+				"description": "it will return item list/book list"
+			},
+			"response": []
+		}
+	]
+}
