@@ -5,6 +5,7 @@ import java.util.List;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import com.library.rest.service.service.ItemSearchService;
 
 @RestController
 @RequestMapping("/item")
+@CrossOrigin(origins = "*")
 public class ItemSearchController {
 
 	private ItemSearchService itemSearchService;
